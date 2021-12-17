@@ -1,10 +1,10 @@
-package web.controller;
+package web.example.webpp311.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import web.dao.UserDAO;
+import web.example.webpp311.dao.UserDAO;
 
 import java.util.ArrayList;
 import java.util.List;

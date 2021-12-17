@@ -1,10 +1,10 @@
-package web.services;
+package web.example.webpp311.services;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import web.model.Role;
-import web.model.User;
+import web.example.webpp311.model.Role;
+import web.example.webpp311.model.User;
 
 import java.util.ArrayList;
 import java.util.Collection;

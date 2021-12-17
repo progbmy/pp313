@@ -1,11 +1,12 @@
-package web.controller;
+package web.example.webpp311.controller;
 
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import web.dao.UserDAO;
-import web.model.User;
+import web.example.webpp311.dao.UserDAO;
+import web.example.webpp311.model.User;
+
 
 @Controller
 @RequestMapping("/admin/users")
@@ -15,7 +16,6 @@ public class AdminController {
 
     public AdminController(UserDAO userDAO) {
         this.userDAO = userDAO;
-
     }
 
     @GetMapping()
@@ -37,7 +37,6 @@ public class AdminController {
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
-
         userDAO.createUser(user);
         return "redirect:/users";
     }

@@ -1,4 +1,4 @@
-package web.services;
+package web.example.webpp311.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -6,11 +6,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.dao.UserDAO;
-import web.model.User;
+import web.example.webpp311.dao.UserDAO;
+import web.example.webpp311.model.User;
 
 @Service
-@Transactional //- не запускалось
+@Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
     private UserDAO userDAO;
 

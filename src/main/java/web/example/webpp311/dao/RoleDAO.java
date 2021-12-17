@@ -1,7 +1,7 @@
-package web.dao;
+package web.example.webpp311.dao;
 
-import web.model.Role;
 
+import javax.management.relation.Role;
 import java.util.List;
 
 public interface RoleDAO {

@@ -1,9 +1,8 @@
-package web.dao;
+package web.example.webpp311.dao;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.model.User;
-
+import web.example.webpp311.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
