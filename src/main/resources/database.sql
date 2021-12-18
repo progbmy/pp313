@@ -3,8 +3,8 @@ drop table roles, users, user_roles;
 
 create table users (
                        id int not null auto_increment primary key,
-                       username varchar(255) not null ,
-                       lastname varchar(255) not null ,
+                       user_name varchar(255) not null ,
+                       last_name varchar(255) not null ,
                        email varchar(255) not null ,
                        age int not null ,
                        password varchar(255) not null
