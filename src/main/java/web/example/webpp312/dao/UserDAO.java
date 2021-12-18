@@ -1,8 +1,8 @@
-package web.example.webpp311.dao;
+package web.example.webpp312.dao;
 
 
 
-import web.example.webpp311.model.User;
+import web.example.webpp312.model.User;
 
 import java.util.List;
 

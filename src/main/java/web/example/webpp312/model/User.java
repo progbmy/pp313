@@ -1,4 +1,4 @@
-package web.example.webpp311.model;
+package web.example.webpp312.model;
 
 import javax.persistence.*;
 import java.util.Set;

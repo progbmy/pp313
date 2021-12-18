@@ -1,4 +1,4 @@
-package web.example.webpp311.config;
+package web.example.webpp312.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import web.example.webpp311.config.handler.LoginSuccessHandler;
-import web.example.webpp311.services.UserDetailsServiceImpl;
+import web.example.webpp312.config.handler.LoginSuccessHandler;
+import web.example.webpp312.services.UserDetailsServiceImpl;
 
 
 @EnableWebSecurity
