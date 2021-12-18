@@ -5,9 +5,10 @@ import org.springframework.stereotype.Repository;
 import web.example.webpp311.model.User;
 
 
-@Repository
+//@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByUsername(String username);
+//    User findByUsername(String username);
+    User userName(String username);
 
 }

@@ -15,6 +15,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
+//
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 
