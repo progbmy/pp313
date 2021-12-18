@@ -1,5 +1,7 @@
 package web.example.webpp311.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.example.webpp311.model.User;
@@ -13,6 +15,11 @@ public class UserDAOImpl implements UserDAO {
 
     @PersistenceContext
     private EntityManager entityManager;
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Transactional
     @Override
@@ -33,18 +40,21 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
     @Override
     public void createUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         entityManager.persist(user);
     }
 
     @Transactional
     @Override
     public void update(int id, User updatedUser) {
+        System.out.println(updatedUser);
+
         User user1 = entityManager.find(User.class, id);
         user1.setUserName(updatedUser.getUserName());
         user1.setLastName(updatedUser.getLastName());
         user1.setEmail(updatedUser.getEmail());
         user1.setAge(updatedUser.getAge());
-        user1.setPassword(updatedUser.getPassword());
+        user1.setPassword(passwordEncoder.encode(updatedUser.getPassword()));;
     }
 
     @Transactional

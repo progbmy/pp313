@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import web.example.webpp311.dao.UserDAO;
 import web.example.webpp311.model.User;
 
+
 @Service
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {

@@ -1,12 +1,12 @@
-package web.example.webpp311.dao;
+package web.example.webpp311.services;
 
 
-
+import web.example.webpp311.model.Role;
 import web.example.webpp311.model.User;
 
 import java.util.List;
 
-public interface UserDAO {
+public interface UserService {
     List<User> resUsers();
     List<User> index();
     User showUser(int id);
@@ -14,5 +14,5 @@ public interface UserDAO {
     void update(int id, User updatedUser);
     void delete(int id);
     User findByUsername(String username);
-
+    Role getRoleByName(String name);
 }

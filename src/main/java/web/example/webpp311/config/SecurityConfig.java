@@ -14,10 +14,16 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import web.example.webpp311.config.handler.LoginSuccessHandler;
 import web.example.webpp311.services.UserDetailsServiceImpl;
 
+
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+//    private UserService userService;
+//
+//    @Autowired
+//    public void setUserService(UserService userService) {
+//        this.userService = userService;
+//    }
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
@@ -82,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //страницы аутентификаци доступна всем
                 .antMatchers("/login").anonymous()
              //   .antMatchers("user/{id}/**").access("hasAnyRole('ADMIN','USER')")
+
                 .antMatchers("/user/**").access("hasAnyRole('USER', 'ADMIN')")
 //                .antMatchers("/user/*").hasAnyAuthority("USER", "ADMIN")
 //                .antMatchers("/admin/users/**").hasAnyAuthority("ADMIN")
@@ -93,4 +100,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/user").access("hasAnyRole('ADMIN', 'USER')");
 
     }
+
+
 }
