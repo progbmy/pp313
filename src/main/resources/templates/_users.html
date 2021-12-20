@@ -126,12 +126,14 @@
                                             <div class="form-group">
                                                 <label for="sel2m" class="d-flex justify-content-center font-weight-bold">Role</label>
                                                 <select multiple class="form-control" size="2" id="sel2m" name="role">
-                                                    <option
-                                                            th:each="role : ${user.roles}"
-                                                            th:text="${role.getName()}"
-                                                            th:value="${role.getId()}"
-                                                            th:selected="${user.roles.contains(role)}">
-                                                    </option>
+<!--                                                    <option-->
+<!--                                                            th:each="role : ${user.roles}"-->
+<!--                                                            th:text="${role.getName()}"-->
+<!--                                                            th:value="${role.getId()}"-->
+<!--                                                            th:selected="${user.roles.contains(role)}">-->
+<!--                                                    </option>-->
+                                                    <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+                                                    <option selected="selected" value="ROLE_USER">ROLE_USER</option>
                                                 </select>
                                             </div>
 
