@@ -40,6 +40,7 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
     @Override
     public void createUser(User user) {
+//        user.setRoles(user.getRoles()); // Добавил при создании 20122021
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         entityManager.persist(user);
     }
@@ -47,13 +48,13 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
     @Override
     public void update(int id, User updatedUser) {
-        System.out.println(updatedUser);
-
         User user1 = entityManager.find(User.class, id);
+
         user1.setUserName(updatedUser.getUserName());
         user1.setLastName(updatedUser.getLastName());
         user1.setEmail(updatedUser.getEmail());
         user1.setAge(updatedUser.getAge());
+        user1.setRoles(updatedUser.getRoles());
         user1.setPassword(passwordEncoder.encode(updatedUser.getPassword()));;
     }
 

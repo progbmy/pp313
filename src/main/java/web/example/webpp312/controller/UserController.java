@@ -21,6 +21,6 @@ public class UserController {
     public String showUser(Model model) {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         model.addAttribute("user", userDAO.findByUsername(name));
-        return "/user";
+        return "_user";
     }
 }

@@ -30,6 +30,14 @@
     <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password error</div>
     </br>
 
+    <tr>
+        <td><label>User Role: </label></td>
+        <td><select multiple size="2" name="role" >
+            <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+            <option selected="selected" value="ROLE_USER">ROLE_USER</option>
+        </select></td>
+    </tr>
+
     <input type="submit" value="Update!">
 
     <form th:method="GET" th:action="@{/logout}">

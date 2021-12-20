@@ -2,6 +2,8 @@ package web.example.webpp312.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +28,11 @@ public class AdminController {
 
     @GetMapping()
     public String getAllUser(Model model) {
+        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+        model.addAttribute("user", userService.findByUsername(user));
         model.addAttribute("users", userService.resUsers());
-        return "/users";
+        return "/_users";
+//        return "/users";
     }
 
     @GetMapping("/{id}")
@@ -38,7 +43,9 @@ public class AdminController {
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-        return "new";
+//        String user = SecurityContextHolder.getContext().getAuthentication().getName();
+//        model.addAttribute("user", userService.findByUsername(user));
+        return "_new";
     }
 
     @PostMapping()
@@ -61,10 +68,24 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("users") User user, @PathVariable("id") int id) {
+    public String update(@ModelAttribute("users") User user, @PathVariable("id") int id, @RequestParam("role") String[] role) {
+        Set<Role> roleSet = new HashSet<>();
+        for (String roles : role) {
+            roleSet.add(userService.getRoleByName(roles));
+        }
+        user.setRoles(roleSet);
         userService.update(id, user);
         return "redirect:/admin/users";
     }
+
+//    @PatchMapping("/{id}")
+//    public String update(@ModelAttribute("users") User user, @PathVariable("id") int id) {
+//        userService.update(id, user);
+//        return "redirect:/admin/users";
+//    }
+
+
+
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {

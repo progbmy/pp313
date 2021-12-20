@@ -29,6 +29,7 @@ public class User {
     private Set<Role> roles;
 
 
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -36,7 +37,15 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
+// add 312
+    public User(String userName, String lastName, String email, String password, int age, Set<Role> roles) {
+        this.userName = userName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.roles = roles;
+    }
 
     public int getId() {
         return id;
