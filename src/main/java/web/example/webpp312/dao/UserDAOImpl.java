@@ -74,18 +74,4 @@ public class UserDAOImpl implements UserDAO {
             return null;
         }
     }
-
-//    @Override
-//    public User findByUsername(String username) {
-//        try {
-//            User user = entityManager.createQuery("SELECT u FROM User u where u.email = :mail", User.class)
-//                    .setParameter("mail", username)
-//                    .getSingleResult();
-//            return user;
-//        } catch (NoResultException ex) {
-//            return null;
-//        }
-//    }
-
-
 }
