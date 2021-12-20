@@ -67,6 +67,7 @@ public class UserDAOImpl implements UserDAO {
     public User findByUsername(String username) {
         try {
             User user = entityManager.createQuery("SELECT u FROM User u where u.userName = :name", User.class)
+//            User user = entityManager.createQuery("SELECT u FROM User u where u.email = :name", User.class)
                     .setParameter("name", username)
                     .getSingleResult();
             return user;

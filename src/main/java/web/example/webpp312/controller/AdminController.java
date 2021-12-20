@@ -43,8 +43,6 @@ public class AdminController {
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-//        String user = SecurityContextHolder.getContext().getAuthentication().getName();
-//        model.addAttribute("user", userService.findByUsername(user));
         return "_new";
     }
 
