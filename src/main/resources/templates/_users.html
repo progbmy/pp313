@@ -19,6 +19,7 @@
             <h3><p>
                 <span th:text="${user.getEmail()}" class="font-weight-bold"> Email </span> with roles:
                 <span th:text="${user.getRoles()}"> Role </span>
+<!--                <span th:text="${user.getRoles()}"> Role </span>-->
             </p></h3>
         </div>
         <div th:fragment="logout" class="col-1">
@@ -76,7 +77,6 @@
                     <td><span th:text="${user.getAge()}"> Age </span></td>
                     <td><span th:text="${user.getEmail()}"> Email </span></td>
                     <td><span th:text="${user.getRoles()}"> Role </span></td>
-
                     <td>
 
                         <!-- Button trigger modal -->
@@ -97,10 +97,7 @@
 
                                     <div class="modal-body">
                                         <form th:id="'form'+${status.index}"  action="#" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:method="PATCH" th:object="${user}">
-<!--                                            <form th:method="PATCH" th:action="@{/admin/users/{id}(id=${users.getId()})}" th:object="${users}">-->
-<!--                                            <form th:method="PATCH" th:action="@{/admin/users/{id}(id=${users.getId()})}" th:object="${users}">-->
 
-<!--                                        <form th:id="'form'+${status.index}"  action="#" th:action="@{/admin/update}" method="post">-->
                                             <div class="form-group">
                                                 <label for="id" class="d-flex justify-content-center font-weight-bold">ID</label>
                                                 <input type="text" id="id" name="id" th:value="${user.id}" class="form-control" readonly>
@@ -111,7 +108,6 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="lastname" class="d-flex justify-content-center font-weight-bold">Last name</label>
-<!--                                                <input type="text" class="form-control" id="surname" name="surname" placeholder="Enter surname" th:value="${user.lastName}">-->
                                                 <input type="text" class="form-control" id="lastname" name="lastName" placeholder="Enter lastname" th:value="${user.lastName}">
                                             </div>
                                             <div class="form-group">
@@ -129,7 +125,7 @@
 
                                             <div class="form-group">
                                                 <label for="sel2m" class="d-flex justify-content-center font-weight-bold">Role</label>
-                                                <select multiple class="form-control" size="2" id="sel2m" name="authorities">
+                                                <select multiple class="form-control" size="2" id="sel2m" name="role">
                                                     <option
                                                             th:each="role : ${user.roles}"
                                                             th:text="${role.getName()}"
@@ -138,6 +134,7 @@
                                                     </option>
                                                 </select>
                                             </div>
+
                                         </form>
                                     </div>
                                     <div class="modal-footer">
@@ -164,8 +161,6 @@
 
                                     <div class="modal-body">
                                         <form th:id="'formDelete'+${status.index}"  action="#" th:action="@{/admin/users/{id}(id=${user.getId()})}" th:method="DELETE">
-<!--                                        <form th:id="'formDelete'+${status.index}"  action="#" th:action="@{admin/{id}/delete(id=${user.id})}" method="get">-->
-<!--                                            <form th:method = "DELETE" th:action="@{/admin/users/{id}(id=${users.getId()})}">-->
 
                                             <div class="form-group">
                                                 <label for="idDelete" class="d-flex justify-content-center font-weight-bold">ID</label>

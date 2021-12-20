@@ -2,6 +2,7 @@ package web.example.webpp312.model;
 
 import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -37,7 +38,7 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-// add 312
+
     public User(String userName, String lastName, String email, String password, int age, Set<Role> roles) {
         this.userName = userName;
         this.lastName = lastName;
@@ -94,5 +95,10 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+
+    public String getRolesString(){
+        return roles.stream().map(Role::toString).collect(Collectors.joining(" "));
+    }
+
 
 }
