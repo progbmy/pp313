@@ -1,5 +1,8 @@
 package web.example.webpp313.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
@@ -7,29 +10,27 @@ import java.util.Collection;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String userName;
-
     private String lastName;
-
     private String email;
-
     private String password;
-
     private int age;
 
     public User() {}
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
 
+    @JsonManagedReference
     private Set<Role> roles;
 
     public Set<Role> getRoles() {

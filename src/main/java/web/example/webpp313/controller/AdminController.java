@@ -31,7 +31,6 @@ public class AdminController {
         model.addAttribute("user", userService.findByUsername(user));
         model.addAttribute("users", userService.resUsers());
         return "/_users";
-//        return "/users";
     }
 
     @GetMapping("/{id}")
