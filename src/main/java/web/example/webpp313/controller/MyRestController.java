@@ -21,12 +21,8 @@ public class MyRestController {
     }
 
     @GetMapping("/users")
-    public List<String> showAllUsers() {
-        List<String> user = new ArrayList<String>();
-        user.add("usermane");
-        user.add("user1");
-        return user;
-//        return userService.resUsers();
+    public List<User> showAllUsers() {
+        return userService.resUsers();
     }
 
     @GetMapping("/users/{id}")

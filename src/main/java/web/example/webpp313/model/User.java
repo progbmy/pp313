@@ -1,6 +1,7 @@
 package web.example.webpp313.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.security.core.GrantedAuthority;
@@ -25,12 +26,13 @@ public class User implements UserDetails {
 
     public User() {}
 
-    @JsonIgnore
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
 
-    @JsonManagedReference
+//    @JsonManagedReference
+
     private Set<Role> roles;
 
     public Set<Role> getRoles() {
