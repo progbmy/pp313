@@ -3,25 +3,24 @@ package web.example.webpp313.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.example.webpp313.dao.RoleDAO;
 import web.example.webpp313.dao.UserDAO;
 import web.example.webpp313.model.Role;
 import web.example.webpp313.model.User;
 
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
-    @PersistenceContext
-    private EntityManager entityManager;
 
+    private final RoleDAO roleDAO;
     private final UserDAO userDAO;
 
     @Autowired
-    public UserServiceImpl(UserDAO userDAO) {
+    public UserServiceImpl(RoleDAO roleDAO, UserDAO userDAO) {
+        this.roleDAO = roleDAO;
         this.userDAO = userDAO;
     }
 
@@ -62,7 +61,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public Role getRoleByName(String name) {
-        return entityManager.createQuery("from Role where name =:name", Role.class)
-                .setParameter("name", name).getSingleResult();
+        return roleDAO.getRoleByName(name);
     }
 }
