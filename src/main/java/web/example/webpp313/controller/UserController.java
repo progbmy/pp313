@@ -1,13 +1,11 @@
-package web.example.webpp312.controller;
+package web.example.webpp313.controller;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import web.example.webpp312.dao.UserDAO;
-import web.example.webpp312.model.User;
-import web.example.webpp312.services.UserService;
+import web.example.webpp313.model.User;
 
 
 @Controller

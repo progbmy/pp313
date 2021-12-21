@@ -1,10 +1,10 @@
-package web.example.webpp312.dao;
+package web.example.webpp313.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import web.example.webpp312.model.User;
+import web.example.webpp313.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;

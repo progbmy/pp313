@@ -1,4 +1,4 @@
-package web.example.webpp312.config.handler;
+package web.example.webpp313.config.handler;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

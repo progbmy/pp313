@@ -1,9 +1,9 @@
-package web.example.webpp312.repositories;
+package web.example.webpp313.repositories;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import web.example.webpp312.model.Role;
+import web.example.webpp313.model.Role;
 
 
 @Repository

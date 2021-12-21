@@ -1,11 +1,11 @@
-package web.example.webpp312.services;
+package web.example.webpp313.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import web.example.webpp312.dao.UserDAO;
-import web.example.webpp312.model.Role;
-import web.example.webpp312.model.User;
+import web.example.webpp313.dao.UserDAO;
+import web.example.webpp313.model.Role;
+import web.example.webpp313.model.User;
 
 
 import javax.persistence.EntityManager;

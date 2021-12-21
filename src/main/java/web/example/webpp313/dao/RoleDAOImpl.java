@@ -1,7 +1,7 @@
-package web.example.webpp312.dao;
+package web.example.webpp313.dao;
 
 import org.springframework.stereotype.Repository;
-import web.example.webpp312.model.Role;
+import web.example.webpp313.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

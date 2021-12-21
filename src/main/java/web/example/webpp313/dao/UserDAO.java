@@ -1,6 +1,6 @@
-package web.example.webpp312.dao;
+package web.example.webpp313.dao;
 
-import web.example.webpp312.model.User;
+import web.example.webpp313.model.User;
 import java.util.List;
 
 public interface UserDAO {

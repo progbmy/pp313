@@ -1,7 +1,7 @@
-package web.example.webpp312.repositories;
+package web.example.webpp313.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import web.example.webpp312.model.User;
+import web.example.webpp313.model.User;
 
 
 //@Repository

@@ -1,4 +1,4 @@
-package web.example.webpp312.model;
+package web.example.webpp313.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
