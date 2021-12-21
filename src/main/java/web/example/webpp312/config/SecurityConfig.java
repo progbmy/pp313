@@ -18,6 +18,7 @@ import web.example.webpp312.services.UserDetailsServiceImpl;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Bean
     public UserDetailsService userDetailsService() {
         return new UserDetailsServiceImpl();
