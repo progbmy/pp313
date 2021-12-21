@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import web.example.webpp312.dao.UserDAO;
+import web.example.webpp312.services.UserService;
 
 
 import java.util.ArrayList;
@@ -13,10 +14,10 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-	private final UserDAO userDAO;
+	private final UserService userService;
 
-	public HomeController(UserDAO userDAO) {
-		this.userDAO = userDAO;
+	public HomeController(UserService userService) {
+		this.userService = userService;
 	}
 
 	@GetMapping(value = "/")
@@ -30,7 +31,7 @@ public class HomeController {
 	}
 	@GetMapping("/admin")
 	public String adminPanel(Model model) {
-		model.addAttribute("users", userDAO.resUsers());
+		model.addAttribute("users", userService.resUsers());
 		return "admin";
 	}
 
