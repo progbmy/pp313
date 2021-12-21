@@ -69,7 +69,9 @@ public class UserDAOImpl implements UserDAO {
             User user = entityManager.createQuery("SELECT u FROM User u where u.userName = :name", User.class)
                     .setParameter("name", username)
                     .getSingleResult();
+            System.out.println(user);
             return user;
+
         } catch (NoResultException ex) {
             return null;
         }
