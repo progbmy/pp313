@@ -2,7 +2,6 @@ package web.example.webpp312.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -32,8 +31,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name="role_id"))
 
     private Set<Role> roles;
-
-
 
     public Set<Role> getRoles() {
         return roles;
@@ -132,8 +129,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
-
-
 
 }
