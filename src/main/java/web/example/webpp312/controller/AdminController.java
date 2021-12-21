@@ -76,15 +76,6 @@ public class AdminController {
         return "redirect:/admin/users";
     }
 
-//    @PatchMapping("/{id}")
-//    public String update(@ModelAttribute("users") User user, @PathVariable("id") int id) {
-//        userService.update(id, user);
-//        return "redirect:/admin/users";
-//    }
-
-
-
-
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
         userService.delete(id);

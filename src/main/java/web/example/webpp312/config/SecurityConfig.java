@@ -31,8 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setPasswordEncoder(passwordEncoder()); // Преобразование паролей в bcrypt
-        authenticationProvider.setUserDetailsService(userDetailsService()); // Поиск по ключу и значению в базе пользователя
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setUserDetailsService(userDetailsService());
         return authenticationProvider;
     }
 
@@ -46,53 +46,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .formLogin()
-
-                // указываем страницу с формой логина
-
-//                .loginPage("/login")
-
-                //указываем логику обработки при логине
                 .successHandler(new LoginSuccessHandler())
-
-//                .failureHandler(new loginFailureHandler())
-                // указываем action с формы логина
-//                .loginProcessingUrl("/perform_login")
-                // Указываем параметры логина и пароля с формы логина
-//                .usernameParameter("j_username")
-//                .passwordParameter("j_password")
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-
-                // даем доступ к форме логина всем
                 .permitAll();
 
         http.logout()
-                // разрешаем делать логаут всем
+
                 .permitAll()
-                // указываем URL логаута
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                // указываем URL при удачном логауте
                 .logoutSuccessUrl("/login?logout")
-                //выклчаем кроссдоменную секьюрность (на этапе обучения неважна)
                 .and().csrf().disable();
 
-
-                // делаем страницу регистрации недоступной для авторизированных пользователей
         http.authorizeRequests()
-                //страницы аутентификаци доступна всем
+
                 .antMatchers("/login").anonymous()
-             //   .antMatchers("user/{id}/**").access("hasAnyRole('ADMIN','USER')")
-
                 .antMatchers("/user/**").access("hasAnyRole('USER', 'ADMIN')")
-//                .antMatchers("/user/*").hasAnyAuthority("USER", "ADMIN")
-//                .antMatchers("/admin/users/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/users/**","/admin/users/**").access("hasAnyRole('ADMIN')").anyRequest().authenticated();
-
-                //.antMatchers("/user").access("hasAnyRole('ADMIN','USER')").anyRequest().authenticated();
-                // защищенные URL
-                //.antMatchers("/hello").access("hasAnyRole('ADMIN')").anyRequest().authenticated();
-//                .antMatchers("/user").access("hasAnyRole('ADMIN', 'USER')");
-
     }
 
 
