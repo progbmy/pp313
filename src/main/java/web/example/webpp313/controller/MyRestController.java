@@ -32,9 +32,13 @@ public class MyRestController {
         userService.createUser(user);
         return user;
     }
+    @PutMapping("/edit/{id}")
+    public User updateUser(int id, @RequestBody User user) {
+        userService.update(id, user);
+        return user;
+    }
 
-
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/delete/{id}")
     public void deleteUser(@PathVariable int id) {
         userService.delete(id);
     }
