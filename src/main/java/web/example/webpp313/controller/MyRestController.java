@@ -1,11 +1,8 @@
 package web.example.webpp313.controller;
 
-
 import org.springframework.web.bind.annotation.*;
 import web.example.webpp313.model.User;
 import web.example.webpp313.services.UserService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -39,7 +36,8 @@ public class MyRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteUser(@PathVariable int id) {
+    public String deleteUser(@PathVariable int id) {
         userService.delete(id);
+        return "User is id" + id + "Delete";
     }
 }
