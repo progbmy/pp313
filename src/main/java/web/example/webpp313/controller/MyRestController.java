@@ -33,4 +33,9 @@ public class MyRestController {
         return user;
     }
 
+
+    @DeleteMapping("/{id}/delete")
+    public void deleteUser(@PathVariable int id) {
+        userService.delete(id);
+    }
 }
