@@ -1,10 +1,7 @@
 package web.example.webpp313.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import web.example.webpp313.model.User;
 import web.example.webpp313.services.UserService;
 
@@ -30,6 +27,10 @@ public class MyRestController {
         return userService.showUser(id);
     }
 
-
+    @PostMapping("/new")
+    public User create(@RequestBody User user) {
+        userService.createUser(user);
+        return user;
+    }
 
 }
