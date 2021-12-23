@@ -1,6 +1,6 @@
 //POST user to table
 const addUser = document.getElementById("userprofile_form")
-let username = document.getElementById('fn')
+let username = document.getElementById('username')
 let lastname = document.getElementById('lastname')
 let age = document.getElementById('age')
 let email = document.getElementById('email')
@@ -32,7 +32,7 @@ addUser.addEventListener('submit', function (e) {
         .then(function (data) {
             console.log(data)
         }).then(function (){
-        location.href = "/admin"
+        location.href = "/admin/users"
     })
 
 })

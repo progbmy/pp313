@@ -18,10 +18,16 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "user_name")
     private String userName;
+    @Column(name="last_name")
     private String lastName;
+    @Column(name = "email")
     private String email;
+    @Column(name="password")
     private String password;
+    @Column(name="age")
     private int age;
 
     public User() {}
@@ -30,8 +36,6 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
-
-//    @JsonManagedReference
 
     private Set<Role> roles;
 
