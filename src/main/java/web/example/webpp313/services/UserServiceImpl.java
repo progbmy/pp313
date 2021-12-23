@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User showUser(int id) {
+    public User showUser(Long id) {
         return userDAO.showUser(id);
     }
 
@@ -45,12 +45,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void update(int id, User updatedUser) {
+    public void update(Long id, User updatedUser) {
         userDAO.update(id, updatedUser);
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(Long id) {
         userDAO.delete(id);
     }
 

@@ -16,7 +16,7 @@
     <div class="row ">
         <div class="col-11">
             <h3><p>
-                <span th:text="${user.getUserName()}" class="font-weight-bold"> Email </span> with roles:
+                <span th:text="${user.getEmail()}" class="font-weight-bold"> Email </span> with roles:
                 <span th:text="${user.getRoles()}"> Role </span>
             </p></h3>
         </div>
@@ -46,7 +46,7 @@
                     <a class="nav-link active" href="/admin">Users table</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/new" method="POST">New User</a>
+                    <a class="nav-link" href="/admin/users/new" method="POST">New User</a>
                 </li>
             </ul>
             <div>

@@ -23,7 +23,7 @@ fetch(URLGetUsersList).then(
                     <th scope="col">Delete</th>
                 </tr>
                 </thead>`;
-                    users += `<tbody id="showAllUsers">`
+                    users += `<tbody id="allUsers">`
                     data.forEach((user) => {
                         users += `
                 <tr data-id=${user.id} id="user-${user.id}">

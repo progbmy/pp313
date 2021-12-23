@@ -20,7 +20,7 @@ public class MyRestController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUser(@PathVariable ("id") int id) {
+    public User getUser(@PathVariable ("id") Long id) {
         return userService.showUser(id);
     }
 
@@ -30,14 +30,13 @@ public class MyRestController {
         return user;
     }
     @PutMapping("/edit/{id}")
-    public User updateUser(int id, @RequestBody User user) {
+    public User updateUser(Long id, @RequestBody User user) {
         userService.update(id, user);
         return user;
     }
 
-    @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
+    @DeleteMapping("/{id}/delete")
+    public void deleteUser(@PathVariable Long id) {
         userService.delete(id);
-        return "User is id" + id + "Delete";
     }
 }

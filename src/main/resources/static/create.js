@@ -1,7 +1,7 @@
 //POST user to table
 const addUser = document.getElementById("userprofile_form")
 let username = document.getElementById('fn')
-let surname = document.getElementById('ln')
+let lastname = document.getElementById('lastname')
 let age = document.getElementById('age')
 let email = document.getElementById('email')
 let password = document.getElementById('password')
@@ -15,7 +15,7 @@ addUser.addEventListener('submit', function (e) {
         method: 'POST',
         body: JSON.stringify({
             username: username.value,
-            surname: surname.value,
+            lastname: lastname.value,
             age: age.value,
             email: email.value,
             password: password.value,

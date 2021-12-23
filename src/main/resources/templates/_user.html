@@ -11,7 +11,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </head>
 <body>
-
 <div class="container-fluid bg-dark text-white" style="height: 40px;">
   <div class="row ">
     <div class="col-11">
@@ -21,18 +20,17 @@
       </p></h3>
     </div>
     <div th:fragment="logout" class="col-1">
-      <a style="color: #cccccc" href="/logout">Logout</a>
+      <a style="text-align:center;color: #cccccc" class="nav-item nav-link pull-xs-right m-l-2 font-weight" href="/logout">Logout</a>
     </div>
   </div>
 </div>
-
 <br>
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-2 p-0 mt-2">
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="/admin/" sec:authorize="hasAuthority('ADMIN')">Admin</a>
+          <a class="nav-link" href="/admin" sec:authorize="hasAuthority('ADMIN')">Admin</a>
         </li>
         <li class="nav-item">
           <a href="/user" class="btn btn-primary btn-lg btn-block text-left" role="button">User</a>
@@ -47,7 +45,7 @@
         <h4><p>About user</p></h4>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">User name</th>
+          <th scope="col">First Name</th>
           <th scope="col">Last Name</th>
           <th scope="col">Age</th>
           <th scope="col">Email</th>
@@ -56,12 +54,12 @@
         </thead>
         <tbody>
         <tr>
-          <td><span th:text="${user.getId()}"> id </span></td>
-          <td><span th:text="${user.getUserName()}"> First Name </span></td>
-          <td><span th:text="${user.getLastName()}"> Last Name </span></td>
-          <td><span th:text="${user.getAge()}"> Age </span></td>
-          <td><span th:text="${user.getEmail()}"> Email</span></td>
-          <td><span th:text="${user.getRoles()}"> Role </span></td>
+          <td><span th:text="${user.id}"> id </span></td>
+          <td><span th:text="${user.username}"> First Name </span></td>
+          <td><span th:text="${user.lastName}"> Last Name </span></td>
+          <td><span th:text="${user.age}"> Age </span></td>
+          <td><span th:text="${user.email}"> Email</span></td>
+          <td><span th:text="${user.getRolesString()}"> Role </span></td>
         </tr>
         </tbody>
       </table>
