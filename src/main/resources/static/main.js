@@ -29,7 +29,7 @@ fetch(URLGetUsersList).then(
                 <tr data-id=${user.id} id="user-${user.id}">
                     <td class="main-id" id="main-id-${user.id}">${user.id}</td>
                     <td class="main-name" id="main-name-${user.id}">${user.username}</td>
-                    <td class="main-surname" id="main-surname-${user.id}">${user.surname}</td>
+                    <td class="main-surname" id="main-surname-${user.id}">${user.lastName}</td>
                     <td class="main-age" id="main-age-${user.id}">${user.age}</td>
                     <td class="main-email" id="main-email-${user.id}">${user.email}</td>
                     <td class="main-roles" id="main-roles-${user.id}">`
