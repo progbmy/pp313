@@ -14,8 +14,8 @@ addUser.addEventListener('submit', function (e) {
     fetch("/api/new", {
         method: 'POST',
         body: JSON.stringify({
-            username: username.value,
-            lastname: lastname.value,
+            userName: username.value,
+            lastName: lastname.value,
             age: age.value,
             email: email.value,
             password: password.value,
