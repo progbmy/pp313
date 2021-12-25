@@ -6,8 +6,6 @@ let age = document.getElementById('age')
 let email = document.getElementById('email')
 let password = document.getElementById('password')
 
-
-
 addUser.addEventListener('submit', function (e) {
     e.preventDefault()
 

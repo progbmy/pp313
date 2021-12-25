@@ -152,8 +152,8 @@ function watchModalEdit(e) {
             },
             body: JSON.stringify({
                 id: document.getElementById('idEdit').value,
-                username: document.getElementById('nameEdit').value,
-                surname: document.getElementById('surnameEdit').value,
+                userName: document.getElementById('nameEdit').value,
+                lastName: document.getElementById('surnameEdit').value,
                 age: document.getElementById('ageEdit').value,
                 email: document.getElementById('emailEdit').value,
                 password: document.getElementById('passwordEdit').value,
