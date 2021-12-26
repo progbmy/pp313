@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <title>Users</title>
 </head>
 <body>
@@ -42,19 +38,32 @@
             <br>
             <h1><p class="font-weight-bold">Admin panel</p></h1>
             <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="userTable">Users table</a>
 
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/admin/users/new" method="POST">New User</a>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link active" data-toggle="userTable">Users table</a>-->
+<!--                </li>-->
+
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="/admin/users/new" method="POST">New User</a>-->
+<!--                </li>-->
+
+<!--                NEW===============   -->
+                <div class="tab">
+                    <button class="tablinks" onclick="openCity(event, 'Users')">All users</button>
+                    <button class="tablinks" onclick="openCity(event, 'New_user')">New user</button>
+                </div>
+
             </ul>
             <div>
-                <p></p>
-                <h3><p>All users</p></h3>
+                <div id="Users" class="tabcontent">
+                    <div id="userTable"></div>
+                </div>
             </div>
-            <div id="userTable">
+
+            <div id="New_user" class="tabcontent">
+                <h3>Paris</h3>
+                <p>Paris is the capital of France.</p>
+                <a class="nav-link" href="/admin/users/new" method="POST">New User</a>
             </div>
 
         </div>
