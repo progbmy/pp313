@@ -34,38 +34,27 @@
                 </li>
             </ul>
         </div>
+
         <div class="col-10 bg-light text-dark">
             <br>
             <h1><p class="font-weight-bold">Admin panel</p></h1>
             <ul class="nav nav-tabs">
-
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link active" data-toggle="userTable">Users table</a>-->
-<!--                </li>-->
-
-<!--                <li class="nav-item">-->
-<!--                    <a class="nav-link" href="/admin/users/new" method="POST">New User</a>-->
-<!--                </li>-->
-
-<!--                NEW===============   -->
                 <div class="tab">
                     <button class="tablinks" onclick="openCity(event, 'Users')">All users</button>
                     <button class="tablinks" onclick="openCity(event, 'New_user')">New user</button>
                 </div>
-
             </ul>
-            <div>
-                <div id="Users" class="tabcontent">
-                    <div id="userTable"></div>
-                </div>
+<!--/////////////////////////////////////////-->
+            <div id="Users" class="tabcontent">
+                <div id="userTable"></div>
             </div>
 
             <div id="New_user" class="tabcontent">
-                <h3>Paris</h3>
-                <p>Paris is the capital of France.</p>
                 <a class="nav-link" href="/admin/users/new" method="POST">New User</a>
+                <div id="userprofile_form"></div>
             </div>
 
+<!--/////////////////////////////////////////-->
         </div>
     </div>
 </div>
@@ -212,6 +201,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-<script src="/main.js"></script>
+
+
+<script type="text/javascript" th:src="@{/main.js}"></script>
+<script type="text/javascript" th:src="@{/create.js}"></script>
+
 </body>
 </html>

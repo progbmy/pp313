@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
@@ -24,7 +25,8 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
     @Override
     public List<User> resUsers() {
-        return entityManager.createQuery("from User", User.class)
+        return entityManager.createQuery(
+                "select distinct user from User user join fetch user.roles roles", User.class)
                 .getResultList();
     }
     @Override
@@ -34,7 +36,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User showUser(Long id) {
-        return entityManager.find(User.class, id);
+        return (User) entityManager.createQuery(
+                "select distinct user from User user join fetch user.roles roles where user.id=:id").getSingleResult();
     }
 
     @Transactional
@@ -66,7 +69,8 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public User findByUsername(String username) {
         try {
-            User user = entityManager.createQuery("SELECT u FROM User u where u.userName = :name", User.class)
+            User user = entityManager.createQuery(
+                    "SELECT distinct u FROM User u join fetch u.roles roles where u.userName = :name", User.class)
                     .setParameter("name", username)
                     .getSingleResult();
             System.out.println(user);
