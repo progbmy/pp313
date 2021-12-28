@@ -1,6 +1,5 @@
-//POST user to table
+// //POST user to table
 const addUser = document.getElementById("userprofile_form")
-
 let username = document.getElementById('username')
 let lastname = document.getElementById('lastname')
 let age = document.getElementById('age')
@@ -9,7 +8,6 @@ let password = document.getElementById('password')
 
 addUser.addEventListener('submit', function (e) {
     e.preventDefault()
-
     fetch("/api/new", {
         method: 'POST',
         body: JSON.stringify({
@@ -19,6 +17,7 @@ addUser.addEventListener('submit', function (e) {
             email: email.value,
             password: password.value,
             rolesString: $('#newRoles').val()
+            //  roles: $('#newRoles').val()
         }),
         headers: {
             'Content-Type': 'application/json'
@@ -33,5 +32,3 @@ addUser.addEventListener('submit', function (e) {
         location.href = "/admin/users"
     })
 })
-
-

@@ -117,6 +117,13 @@ userList.addEventListener('click', (e) => {
                 select[1].selected = true;
             }
         }
+        // for (let i of arrayOfRoles) {
+        //     if (i === 'ROLE_ADMIN') {
+        //         select[0].selected = true;
+        //     } else if (i === 'ROLE_USER') {
+        //         select[1].selected = true;
+        //     }
+        // }
     }
 
     modalDelete.addEventListener('click', watchModalDelete)
@@ -157,7 +164,8 @@ function watchModalEdit(e) {
                 age: document.getElementById('ageEdit').value,
                 email: document.getElementById('emailEdit').value,
                 password: document.getElementById('passwordEdit').value,
-                roleString: $('#rolesEdit').val()
+                // roleString: $('#rolesEdit').val()
+                roles: $('#rolesEdit').val()
 
             })
         })

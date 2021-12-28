@@ -26,17 +26,6 @@ public class User implements UserDetails {
     @Column(name="age")
     private int age;
 
-//    @Transient
-//    private String[] roleString;
-//
-//    public String[] getRoleString() {
-//        return roleString;
-//    }
-//
-//    public void setRoleString(String[] roleString) {
-//        this.roleString = roleString;
-//    }
-
     public User() {}
 
     @ManyToMany(fetch = FetchType.LAZY)

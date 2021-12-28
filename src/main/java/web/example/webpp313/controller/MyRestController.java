@@ -23,7 +23,7 @@ public class MyRestController {
         return ResponseEntity.ok().body(users);
     }
 
-    @GetMapping("user/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity<User> getUser(@PathVariable ("id") Long id) {
         if (id==null) {
             return ResponseEntity.notFound().build();
@@ -37,19 +37,6 @@ public class MyRestController {
        userService.createUser(user);
        return ResponseEntity.ok().body(user);
     }
-//    @PostMapping("/new")
-//    public ResponseEntity<User> create(@RequestBody User user, BindingResult bindingResult,
-//                                       @RequestParam(required = false, name = "newRoles") String[] newRoles) {
-//        if (bindingResult.hasErrors()) {
-//        ResponseEntity.status(HttpStatus.RESET_CONTENT).build();
-//    }
-//    userService.createUser(user, newRoles);
-//    return ResponseEntity.status(HttpStatus.CREATED).body(user);
-//    }
-
-
-
-
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<User> updateUser(Long id, @RequestBody User user) {
