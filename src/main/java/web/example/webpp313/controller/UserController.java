@@ -13,10 +13,9 @@ import web.example.webpp313.model.User;
 public class UserController {
 
     @GetMapping()
-    public String showUser(Model model) {
-
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        model.addAttribute("user", user);
-        return "_user";
+    public String printUser(Model model) {
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("currentUser", currentUser);
+        return "user";
     }
 }

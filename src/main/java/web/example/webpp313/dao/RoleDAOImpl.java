@@ -11,24 +11,23 @@ import java.util.List;
 public class RoleDAOImpl implements RoleDAO {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    private EntityManager manager;
 
     @Override
-    public List<Role> getRoles() {
-        return  entityManager.createQuery("select r from Role r").getResultList();
+    public void create(Role role) {
+        manager.persist(role);
     }
 
     @Override
-    public Role getRoleById(String id) {
-        return entityManager.find(Role.class, Long.valueOf(id));
+    public Role readByRole(String role) {
+        return manager.createQuery("from Role role where role.role =:role", Role.class)
+                .setParameter("role", role)
+                .getSingleResult();
     }
 
     @Override
-    public Role getRoleByName(String name) {
-//        return (Role) entityManager.createQuery("select r from Role r where r.role= :name")
-        return entityManager.createQuery("from Role where name =:name", Role.class)
-                .setParameter("name", name).getSingleResult();
+    public List<Role> getAllRoles() {
+        return manager.createQuery("from Role", Role.class).getResultList();
     }
-
 
 }

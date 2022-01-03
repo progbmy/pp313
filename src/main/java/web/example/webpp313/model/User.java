@@ -4,50 +4,45 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_name")
-    private String userName;
-    @Column(name="last_name")
+    @Column(name = "user_name", nullable = false, unique = true)
+    private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
-    @Column(name = "email")
-    private String email;
-    @Column(name="password")
-    private String password;
-    @Column(name="age")
+
+    @Column(name = "age")
     private int age;
 
-    public User() {}
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "password")
+    private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name="user_roles", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id"))
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles;
 
-    private Set<Role> roles;
-
-    public Set<Role> getRoles() {
-        return roles;
+    public User() {
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public User(String userName, String lastName, String email, String password, int age, Set<Role> roles) {
-        this.userName = userName;
+    public User(String firstName, String lastName, int age, String email, String password, Collection<Role> roles) {
+        this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.email = email;
         this.password = password;
-        this.age = age;
         this.roles = roles;
     }
 
@@ -59,12 +54,12 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -75,17 +70,6 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public int getAge() {
         return age;
     }
@@ -94,8 +78,28 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public String getRolesString(){
-        return roles.stream().map(Role::toString).collect(Collectors.joining(" "));
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -103,13 +107,9 @@ public class User implements UserDetails {
         return roles;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String getUsername() {
-        return userName;
+        return firstName;
     }
 
     @Override
@@ -131,5 +131,4 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

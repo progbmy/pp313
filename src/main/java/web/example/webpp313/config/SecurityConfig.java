@@ -11,9 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import web.example.webpp313.config.handler.LoginSuccessHandler;
 import web.example.webpp313.services.UserDetailsServiceImpl;
-
 
 @EnableWebSecurity
 @Configuration
@@ -54,13 +52,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .permitAll()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/login")
                 .and().csrf().disable();
 
-        http.authorizeRequests()
+        http.authorizeRequests().antMatchers("/login").anonymous().
 
-                .antMatchers("/login").anonymous()
-                .antMatchers("/user/**").access("hasAnyRole('USER', 'ADMIN')")
-                .antMatchers("/users/**","/admin/users/**").access("hasAnyRole('ADMIN')").anyRequest().authenticated();
+                antMatchers("/admin","/admin/**").access("hasAnyRole('ADMIN')").
+               // antMatchers("/admin/**").access("hasAnyRole('ADMIN')").
+                antMatchers("/user").access("hasAnyRole('USER', 'ADMIN')").
+                antMatchers("/user/**").access("hasAnyRole('USER', 'ADMIN')");
     }
 }

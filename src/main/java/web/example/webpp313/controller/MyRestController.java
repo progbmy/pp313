@@ -1,53 +1,72 @@
 package web.example.webpp313.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import web.example.webpp313.model.Role;
 import web.example.webpp313.model.User;
+import web.example.webpp313.services.RoleService;
 import web.example.webpp313.services.UserService;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api")
 public class MyRestController {
+
+    private final RoleService roleService;
     private final UserService userService;
 
-    public MyRestController(UserService userService) {
+    @Autowired
+    public MyRestController(RoleService roleService, UserService userService) {
+        this.roleService = roleService;
         this.userService = userService;
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<User>> showAllUsers() {
-        List<User> users = userService.resUsers();
-        return ResponseEntity.ok().body(users);
+    public ResponseEntity<?> getAllUsers() {
+        List<User> users = userService.read();
+        return (users != null && !users.isEmpty())
+                ? new ResponseEntity<>(users, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<User> getUser(@PathVariable ("id") Long id) {
-        if (id==null) {
-            return ResponseEntity.notFound().build();
-        }
-        User user = userService.showUser(id);
-        return ResponseEntity.ok().body(user);
+    public ResponseEntity<?> getUser(@PathVariable Long id) {
+        User user = userService.readById(id);
+        return (user != null)
+                ? new ResponseEntity<>(user, HttpStatus.OK)
+                : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<User> create(@RequestBody User user) {
-       userService.createUser(user);
-       return ResponseEntity.ok().body(user);
+    @PostMapping("/new/user")
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        userService.create(getUsersRole(user));
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/edit/{id}")
-    public ResponseEntity<User> updateUser(Long id, @RequestBody User user) {
-        userService.update(id, user);
-        return ResponseEntity.ok().body(user);
+    @PatchMapping("/update/user")
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        userService.update(getUsersRole(user));
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}/delete")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable Long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    private User getUsersRole(User user) {
+        List<Role> roles = new ArrayList<>();
+        for (Role role : user.getRoles()) {
+            roles.add(roleService.readByRole(role.getRole()));
+        }
+        user.setRoles(roles);
+        return user;
     }
 
 }

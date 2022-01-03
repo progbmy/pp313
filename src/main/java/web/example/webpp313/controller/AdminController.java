@@ -1,6 +1,5 @@
 package web.example.webpp313.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -8,76 +7,69 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.example.webpp313.model.Role;
 import web.example.webpp313.model.User;
+import web.example.webpp313.services.RoleService;
 import web.example.webpp313.services.UserService;
+import java.util.ArrayList;
+import java.util.List;
 
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Controller
-@RequestMapping("/admin/users")
+@RequestMapping("/admin")
 public class AdminController {
 
-
     private final UserService userService;
+    private final RoleService roleService;
+
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping()
-    public String getAllUser(Model model) {
-        String user = SecurityContextHolder.getContext().getAuthentication().getName();
-        model.addAttribute("user", userService.findByUsername(user));
-        model.addAttribute("users", userService.resUsers());
-        return "/_users";
-    }
+    public String printUser(Model model) {
+        model.addAttribute("users", userService.read());
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("users", userService.showUser(id));
-        return "show";
-    }
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("currentUser", currentUser);
 
-    @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user) {
-        return "_new";
+        model.addAttribute("roles", roleService.getAllRoles());
+
+        return "admin";
     }
 
     @PostMapping()
-    public String create(@ModelAttribute("user") User user,
-                         @RequestParam("role") String[] role) {
-        Set<Role> roleSet = new HashSet<>();
-        for (String roles : role) {
-            roleSet.add(userService.getRoleByName(roles));
-        }
-        user.setRoles(roleSet);
-        userService.createUser(user);
-
-        return "redirect:/admin/users";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("users", userService.showUser(id));
-        return ("edit");
+    public String create(@ModelAttribute(value = "user") User user,
+                         @RequestParam(name = "roles", required = false) String... roles) {
+        List<Role> listRoles = readRoles(roles);
+        user.setRoles(listRoles);
+        userService.create(user);
+        return "redirect:/admin";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("users") User user, @PathVariable("id") Long id, @RequestParam("role") String[] role) {
-        Set<Role> roleSet = new HashSet<>();
-        for (String roles : role) {
-            roleSet.add(userService.getRoleByName(roles));
-        }
-        user.setRoles(roleSet);
-        userService.update(id, user);
-        return "redirect:/admin/users";
+    public String update(@ModelAttribute("user") User user
+            , @RequestParam(name = "roles", required = false) String... roles) {
+        List<Role> listRoles = readRoles(roles);
+        user.setRoles(listRoles);
+        userService.update(user);
+        return "redirect:/admin";
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id) {
+    @DeleteMapping(value = "/{id}")
+    public String deleteUser(@PathVariable long id) {
         userService.delete(id);
-        return "redirect:/admin/users";
+        return "redirect:/admin";
+    }
+
+    private List<Role> readRoles(String... role) {
+        List<Role> roles = new ArrayList<>();
+        if (role != null) {
+            for (String s : role) {
+                roles.add(roleService.readByRole(s));
+            }
+        }
+        return roles;
     }
 
 }
