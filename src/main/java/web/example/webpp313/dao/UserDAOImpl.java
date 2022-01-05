@@ -47,6 +47,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void update(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         manager.merge(user);
     }
 
